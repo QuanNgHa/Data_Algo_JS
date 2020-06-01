@@ -12,7 +12,7 @@ class Queue {
         this.length = 0;
     }
     peek() {
-        return this.last;
+        return this.first;
     }
     enqueue(value) {
         const newNode = new Node(value);
@@ -22,16 +22,26 @@ class Queue {
             this.last = newNode;
         }
         else {
-            const holdingPointer = this.last;
-
+            this.last.next = newNode;
             this.last = newNode;
-            this.last.next = holdingPointer;
         }
         this.length++;
         return this;
 
     }
     dequeue() {
+        if (!this.first) {
+            //if this.first == null
+            return null
+        }
+        else if (this.first == this.last) {
+            //if only 1 element in the queue
+            this.last = null
+        }
+        const holdingPointer = this.first;
+        this.first = this.first.next;
+        this.length--;
+        return holdingPointer;
     }
     //isEmpty;
 }
@@ -40,5 +50,10 @@ const myQueue = new Queue();
 myQueue.enqueue('John');
 myQueue.enqueue('Chris');
 myQueue.enqueue('CodeXplore');
+console.log(myQueue);
+console.log('My dequeue value: ' + myQueue.dequeue().value);
+console.log('My dequeue value: ' + myQueue.dequeue().value);
+console.log('My dequeue value: ' + myQueue.dequeue().value);
+myQueue.dequeue();
 console.log(myQueue);
 
