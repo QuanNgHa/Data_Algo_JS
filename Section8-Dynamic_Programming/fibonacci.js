@@ -10,6 +10,7 @@ function fibonacci(n) {
 }
 
 let calculations = 0;
+//Dynamic Programming: Closure + Recursion
 function fibonacciMaster() {
   //O(n)
   let cache = {};
@@ -27,7 +28,7 @@ function fibonacciMaster() {
     }
   };
 }
-
+//Third way [Bottom Up] => No need closure & recursive
 function fibonacciMaster2(n) {
   let answer = [0, 1];
   for (let i = 2; i <= n; i++) {
